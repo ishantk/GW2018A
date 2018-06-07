@@ -41,6 +41,7 @@ public class DataTypes {
 		boolean flag = true;
 		flag = false;
 		
+		float pi = 3.14f;
 		
 		String name = "John Watson";
 	}
