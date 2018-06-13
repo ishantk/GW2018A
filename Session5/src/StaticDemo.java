@@ -1,5 +1,6 @@
 class Counter{
 	
+	// By Default count and sCount will be 0
 	int count;
 	static int sCount;
 	
@@ -11,6 +12,12 @@ class Counter{
 	void showCount(){
 		System.out.println("count is: "+count);
 		System.out.println("sCount is: "+sCount);
+	}
+	
+	// Property of Class
+	static void someFun(){
+		// error
+		//count++; // Property of Object cannot be accessed here
 	}
 	
 }
@@ -34,9 +41,11 @@ public class StaticDemo {
 		c2.incrementCount();
 		c2.incrementCount();
 		
-		c1.showCount();
-		c2.showCount();
-		c3.showCount();
+		Counter.sCount = 121;
+						//  count 	sCount
+		c1.showCount(); //	4  		9		
+		c2.showCount(); //	5 		9
+		c3.showCount(); //  4    	9
 	}
 
 }

@@ -1,9 +1,21 @@
 class Address{
+	String adrsLine;
+	String city;
 	
+	void showAddress(){
+		System.out.println(adrsLine+" is in "+city);
+	}
 }
+
 class Vehicle{
+	String regNumber;
+	String color;
 	
+	void showVehicle(){
+		System.out.println(regNumber+" is "+color+" in color");
+	}
 }
+
 class Parent{
 
 	// Attributes
@@ -54,9 +66,33 @@ public class ISADemo {
 		
 		Son sRef = new Son();
 		sRef.fname = "Mike";
-		//sRef.adrs = ?
-		//sRef.vehicles = ?
+		
+		Address a = new Address();
+		a.adrsLine = "Redwood Shores";
+		a.city = "Ludhiana";
+		
+		Vehicle v1 = new Vehicle();
+		v1.regNumber = "PB10AB0001";
+		v1.color = "Black";
+		
+		Vehicle v2 = new Vehicle();
+		v2.regNumber = "PB10XY1000";
+		v2.color = "White";
+		
+		Vehicle[] vArr = new Vehicle[2];
+		vArr[0] = v1;
+		vArr[1] = v2;
+		
+		sRef.adrs = a;
+		sRef.vehicles = vArr;
+		
+		
 		sRef.show();
+		sRef.adrs.showAddress();
+		
+		for(Vehicle v : sRef.vehicles){
+			v.showVehicle();
+		}
 
 	}
 
