@@ -3,6 +3,8 @@ package com.auribises.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.auribises.model.Customer;
 
@@ -40,6 +42,8 @@ public class JDBCHelper {
 		}
 	}
 	
+	// Create deleteCustomer and updateCustomer methods
+	
 	public int addCustomer(Customer cRef){
 		
 		int i = 0;
@@ -62,6 +66,36 @@ public class JDBCHelper {
 		}
 		
 		return i;
+	}
+	
+	public ArrayList<Customer> queryCustomers(){
+		
+		ArrayList<Customer> customerList = new ArrayList<Customer>();
+		
+		try {
+			
+			String sql = "select * from Customer";
+			pStmt = con.prepareStatement(sql);
+			ResultSet rs = pStmt.executeQuery(); // is to retrieve
+			
+			while(rs.next()){
+				Customer cRef = new Customer();
+				cRef.cid = rs.getInt(1);
+				cRef.name = rs.getString(2);
+				cRef.phone = rs.getString(3);
+				cRef.email = rs.getString(4);
+				cRef.age = rs.getInt(5);
+				//System.out.println(cRef);
+				//System.out.println("=========================================");
+				
+				customerList.add(cRef);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Exception: "+e);
+		}
+		
+		return customerList;
 	}
 	
 	public void closeConnection(){

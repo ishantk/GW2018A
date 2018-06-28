@@ -13,6 +13,7 @@ public class Client {
 
 	public static void main(String[] args) {
 		
+		
 		//Student s1 = new Student(101,"John","john@example.com",30,"Redwood Shores");
 		//Student s2 = new Student(102,"Fionna","fionna@example.com",32,"Country Homes");
 		

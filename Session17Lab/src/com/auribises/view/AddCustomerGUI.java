@@ -1,13 +1,18 @@
 package com.auribises.view;
 
+import java.awt.CheckboxGroup;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.auribises.db.JDBCHelper;
@@ -28,6 +33,12 @@ public class AddCustomerGUI implements ActionListener{
 	
 	Customer cRef;
 	
+	/*JRadioButton rbMale, rbFemale;
+	CheckboxGroup group;
+	JCheckBox cbCpp,cbJava,cbPython;
+	JComboBox<String> cbxCity;*/
+	
+	
 	public AddCustomerGUI() {
 		
 		cRef = new Customer();
@@ -44,6 +55,9 @@ public class AddCustomerGUI implements ActionListener{
 		
 		lblEmail = new JLabel("Enter Customer Email");
 		lblAge = new JLabel("Enter Customer Age");
+		
+//		rbMale = new JRadioButton("Male");
+//		rbFemale = new JRadioButton("Female");
 		
 		txtName = new JTextField(14);
 		txtPhone = new JTextField(14);
@@ -107,7 +121,7 @@ public class AddCustomerGUI implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnAddCustomer){
 			
-			cRef.name = txtName.getText();
+			/*cRef.name = txtName.getText();
 			cRef.phone = txtPhone.getText();
 			cRef.email = txtEmail.getText();
 			cRef.age = Integer.parseInt(txtAge.getText());
@@ -127,7 +141,17 @@ public class AddCustomerGUI implements ActionListener{
 			}else{
 				lblTitle.setText("Some Problem!! Try Again !!");
 			}
-			helper.closeConnection();	
+			helper.closeConnection();	*/
+			
+			JDBCHelper helper = new JDBCHelper();
+			helper.createConnection();
+			ArrayList<Customer> customers = helper.queryCustomers();
+			helper.closeConnection();
+			
+			for(Customer cRef : customers){
+				System.out.println(cRef);
+			}
+			
 		}else{
 			fr.dispose();
 		}
